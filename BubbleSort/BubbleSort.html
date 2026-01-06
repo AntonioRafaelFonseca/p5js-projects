@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bubble Sort p5.js</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+
+  </head>
+
+  <body>
+    <div id="title">
+      <h1>Bubble Sort </h1>
+      <h2> in p5.js</h2>
+      <div class="desc">This is a visualization and explanation of the Bubble Sort algorithm using p5.js</div>
+    </div>
+    <pre>
+
+
+    </pre>
+    <div id="sort">
+      <div id="step1">
+        <div class="text">1. Start at the beginning of the list and compare numbers index 0 and one</div>
+        <div class="code">
+  let l=[3, 1, 4, 6, 7, 9, 1, 4, 2];
+
+  let index_0 = 3;
+  let index_1 = 1;
+
+  //compare both:
+  if (index_0 > index_1){
+    //swap them:
+
+    [index_0, index_1] = [index_1, index_0];
+
+  }
+        </div>
+      </div>
+      <div id="Step 2">
+        <div class="text"><pre></pre>2.Then repeat this process for each pair of adjacent elements until you reach the end of the list 
+            it's not necessary to start over from the beginning because for evry pass the sorter makes the last numbers are already in the correct order:
+        </div>
+        <pre></pre>
+        <div class="code">
+  l=[3, 1, 4, 6, 7, 9, 1, 4, 2];
+
+                &downarrow;
+
+  l=[1, 3, 4, 6, 7, 9, 1, 4, 2];
+
+                &downarrow;
+
+  l=[1, 3, 4, 6, 7, 9, 1, 4, 2];
+
+                &downarrow;
+
+  l=[1, 3, 4, 6, 7, 9, 1, 4, 2];
+
+                &downarrow;
+
+              ...
+
+                &downarrow;
+  l=[1, 1, 2, 3, 4, 4, 6, 7, 9]
+        </div>
+      </div>
+      <div id="countCorrect">
+        <div class="text">To check if the list is sorted, we can count how many adjacent pairs are in the correct order</div>
+        <pre>  For example, in the list [0, 1, 4, 4, 2, 9]:
+          - 0 and 1 are in the correct order (0 &lt; 1)
+          - 1 and 4 are in the correct order (1 &lt; 4)
+          - 4 and 4 are in the correct order (4 &lt;= 4)
+          - 4 and 2 are NOT in the correct order (4 > 2)
+          - 2 and 9 are in the correct order (2 &lt; 9)
+        </pre>
+        <div class="text">So, if the number of correct pairs equals the number of elements in the list, the list is sorted.  </div>
+        <div class="code">  
+  if(CorrectPairs === list.length - 1){
+    Then the list is sorted!!!
+    Stop the Program.
+  }
+        </div>
+      </div>
+    </div>
+    <div id="Drawing">
+      <h2>
+Drawing</h2>
+      <div class="text">To determine the dimensions of each bar in the visualization we can use the following formulas:</div>
+      <div class="code">
+BarWidth = canvasWidth / numberOfBars;  //the available space divided by the number of bars
+BarHeight = map(value, minValue, maxValue, 1, canvasHeight)  
+      </div>
+      <div class="text">Here is an example:
+
+      </div>
+      <div class="code">      
+let blockHeight = map(l[j], 1, max(...l), 1, height);                             
+
+l[j] = the value of index j(from the for loop) in a list                         
+
+//max(...l) = the maximum value in the list l                                              
+//1 = minimum value&lpar;so that the bars don't disappear because their height = 0     
+//height = maximum height of the block so they aren't bigger than the canvas
+
+
+x = index * BarWidth                        #the x position of each bar is determined by its index multiplied by the bar width 
+so that they are equally spaced
+y = canvasHeight - BarHeight               #the y position is determined by subtracting the bar height from the canvas height
+</div>
+    </div>
+    <div id="full code">
+      <h2>
+        
+Full Code:
+      </h2>
+      <div class="code">
+const numberOfBars = 100;           //set this to whateaver you want
+let RandomArray = [];
+let substeps = numberOfBars/5;    //decrease the number to increase the number of substeps
+let lastCorrectIndex;
+let RedBarIndex;
+let ItemsToRandomlyAddInMainArray = []
+let finishedAnimation = false
+let j = 0;
+
+function setup() {
+  createCanvas(max(400, numberOfBars), 400);    //limits the canvas width to 400 
+  for(let i = 0;i &lt; numberOfBars;i++){
+    RandomArray.push(map(i, 0, numberOfBars, 1, height));                 // adds in the numbers
+  }
+  shuffle(RandomArray, true)
+  
+  RedBarIndex = 0;
+  lastCorrectIndex = RandomArray.length -1;
+}
+
+function getBlockDimensions(list, i){
+
+  var blockWidth = width/list.length;
+  var x = i*blockWidth;
+  var blockHeight = map(list[i], 1, max(...list), 1, height);
+  var y = height - blockHeight;
+
+  values = [x, y, blockWidth, blockHeight]
+  return values
+}
+
+function SolveSorting(list, i){
+
+  fill(255, 0, 0);
+  var [x, y, w, h] = getBlockDimensions(RandomArray, i);
+  rect(x, y, w, h);
+
+  if (list[i] >= list[i+1]){
+    [list[i], list[i+1]]=[list[i+1], list[i]]
+  }
+}
+
+function CountCorrect(list){                        //counts the correct items
+  var correct = 0;
+
+  for (var i = 0;i &lt; list.length-1; i++){
+    if (list[i] &lt;= list[i+1]){
+      correct++;
+    }
+  }
+  return correct;
+}
+
+function goAndDraw(l){                                //iterate over all the items in a list and draw them
+
+  for (let j = 0;j &lt; l.length;j++){                 
+
+    fill(255);
+    
+    var [x, y, w, h] = getBlockDimensions(l, j);
+    rect(x, y, w, h);
+  }
+}
+
+function draw() {                         //main loop
+  
+  frameRate(60)
+  if(CountCorrect(RandomArray) !== RandomArray.length - 1){
+    for (current=0;current &lt; substeps &semi;current++){
+      background(0);
+      
+      goAndDraw(RandomArray);
+      
+      //substeps = map(mouseX, 0, 200, 1, numberOfBars)      You can add this here to be able to control with the mouse X position the substeps
+      
+      noStroke()
+      RedBarIndex++;
+      
+      if (RedBarIndex > lastCorrectIndex){
+        RedBarIndex = 0;
+        lastCorrectIndex -= 1;
+      }
+      
+
+      if (CountCorrect(RandomArray) !== RandomArray.length - 1) {
+        SolveSorting(RandomArray, RedBarIndex);
+        }
+        goAndDraw(RandomArray)
+    }
+  }
+  else{
+    playAnimation()
+  }
+}
+
+function playAnimation(){
+  if (finishedAnimation){
+    goAndDraw(RandomArray)
+    noLoop()
+    fill(255)
+    textAlign(CENTER, CENTER);               //|
+    textFont('Courier New');                 //|
+    textStyle(BOLD)                          //|-- Text Settings
+    textSize(64);                            //|
+    text('DONE!!!', width / 2, height / 6);  //|
+  }
+
+  else{
+    if(j > RandomArray.length - 1){
+        finishedAnimation = true
+      }
+    j++;
+    fill(0, 255, 0);
+    var [x, y, w, h] = getBlockDimensions(RandomArray, j);
+    rect(x, y, w, h);
+  }
+}
+      </div>
+    </div>
+    <div id="inputs">
+      <button id="Restart">Restart</button>
+      <label for="nBars">Number of bars:</label>
+      <input type="number" id="nBars" value="100" step="10">
+    </div>
+    <footer>&copy; 2026 António Fonseca</footer>
+    <script src="sketch.js"></script>
+    <script src="inputs.js"></script>
+  </body>
+</html>

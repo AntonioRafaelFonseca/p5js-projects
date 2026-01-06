@@ -57,6 +57,7 @@ h4 {
   white-space: pre-line;
   margin-left: 21px;
 }
+
 .text {
   font-family: 'Times New Roman', Times, serif;
   font-size: medium;
@@ -151,7 +152,6 @@ input[type="checkbox"] {
 a {
   display: block;
   border: 2px solid rgba(0, 0, 0, 1);
-  /*background-color: rgb(131, 244, 97);*/
   background-color: #aeaeaeff;
   color: black;
   border-radius: 10px;

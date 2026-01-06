@@ -1,0 +1,32 @@
+
+h1 {
+  text-indent: 2mm;
+  font-size: 50px;
+  color: rgb(10, 10, 10);
+  margin-left: 10px;
+}
+a {
+  display: block;
+  border: 2px solid rgba(0, 0, 0, 1);
+  background-color: #aeaeaeff;
+  color: black;
+  border-radius: 6px;
+  white-space: pre-line;
+  min-width: fit-content;
+  margin-top: 5px;
+  width: 400px;
+  padding-left: 10px;
+  font-size: larger;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  font-size: large;
+}
