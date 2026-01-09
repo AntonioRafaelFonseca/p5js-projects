@@ -3,6 +3,7 @@ const nBars = document.getElementById('nBars');
 
 rButton.onclick = () => {
   rebuild(numberOfBars);
+  run = true;
 };
 
 nBars.oninput = () => {

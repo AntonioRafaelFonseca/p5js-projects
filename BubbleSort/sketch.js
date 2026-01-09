@@ -7,6 +7,8 @@ let ItemsToRandomlyAddInMainArray = []
 let finishedAnimation = false
 let j = 0;
 
+let run = false;
+
 function setup() {
   createCanvas(max(400, numberOfBars), 400);    //limits the canvas width to 400 
   for(let i = 0;i< numberOfBars;i++){
@@ -19,6 +21,7 @@ function setup() {
 }
 
 function rebuild(n) {
+  run = false;
   numberOfBars = constrain(n, 10, 150);
 
   RandomArray = [];
@@ -83,36 +86,45 @@ function goAndDraw(l){                                //iterate over all the ite
 }
 
 function draw() {                         //main loop
-  
-  frameRate(60)
-  if(CountCorrect(RandomArray) !== RandomArray.length - 1){
-    for (var current=0;current<substeps;current++){
-      background(0);
-      
-      goAndDraw(RandomArray);
-      
-      //substeps = map(mouseX, 0, 200, 1, numberOfBars)      You can add this here to be able to control with the mouse X position the substeps
-      
-      noStroke()
-      RedBarIndex++;
-      
-      if (RedBarIndex > lastCorrectIndex){
-        RedBarIndex = 0;
-        lastCorrectIndex -= 1;
-      }
-      
-
-      if (CountCorrect(RandomArray) !== RandomArray.length - 1) {
-        SolveSorting(RandomArray, RedBarIndex);
+  if (run){
+    frameRate(60)
+    if(CountCorrect(RandomArray) !== RandomArray.length - 1){
+      for (var current=0;current<substeps;current++){
+        background(0);
+        
+        goAndDraw(RandomArray);
+        
+        //substeps = map(mouseX, 0, 200, 1, numberOfBars)      You can add this here to be able to control with the mouse X position the substeps
+        
+        noStroke()
+        RedBarIndex++;
+        
+        if (RedBarIndex > lastCorrectIndex){
+          RedBarIndex = 0;
+          lastCorrectIndex -= 1;
         }
-        goAndDraw(RandomArray)
+        
+
+        if (CountCorrect(RandomArray) !== RandomArray.length - 1) {
+          SolveSorting(RandomArray, RedBarIndex);
+          }
+          goAndDraw(RandomArray)
+      }
+    }
+    else{
+      playAnimation()
     }
   }
-  else{
-    playAnimation()
+  else {
+    background(0)
+    fill(255)
+    textAlign(CENTER, CENTER);               //|
+    textFont('Courier New');                 //|
+    textStyle(BOLD)                          //|-- Text Settings
+    textSize(24);                            //|
+    text('Press refresh to Start', width / 2, height / 6);  //|
   }
 }
-
 function playAnimation(){
   if (finishedAnimation){
     goAndDraw(RandomArray)
