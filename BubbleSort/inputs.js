@@ -9,4 +9,5 @@ rButton.onclick = () => {
 nBars.oninput = () => {
   let nb = parseInt(nBars.value);
   rebuild(nb);
+  nBars.value = constrain(Number(nBars.value), 10, 150)
 };

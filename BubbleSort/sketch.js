@@ -122,7 +122,7 @@ function draw() {                         //main loop
     textFont('Courier New');                 //|
     textStyle(BOLD)                          //|-- Text Settings
     textSize(24);                            //|
-    text('Press refresh to Start', width / 2, height / 6);  //|
+    text('Press Restart to Start', width / 2, height / 6);  //|
   }
 }
 function playAnimation(){
