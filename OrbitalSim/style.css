@@ -156,13 +156,23 @@ a {
   color: black;
   border-radius: 10px;
   white-space: pre-line;
-  margin-left: 90px;
   min-width: fit-content;
-  margin-top: 5px;
   width: 400px;
+
+  margin-left: 90px;
+  margin-top: 5px;
+  
   padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   font-size: larger;
   align-items: stretch;
+  transition: margin 0.3s ease;
+}
+a:hover{
+  background-color: rgb(143, 143, 143);
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .inputContainer {
