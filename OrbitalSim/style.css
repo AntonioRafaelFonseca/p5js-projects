@@ -150,7 +150,6 @@ input[type="checkbox"] {
 
 
 a {
-  display: block;
   border: 2px solid rgba(0, 0, 0, 1);
   background-color: #aeaeaeff;
   color: black;
@@ -159,20 +158,24 @@ a {
   min-width: fit-content;
   width: 400px;
 
-  margin-left: 90px;
-  margin-top: 5px;
   
   padding-left: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: larger;
-  align-items: stretch;
-  transition: margin 0.3s ease;
+  text-decoration: dotted;
+
+  transition: all 0.3s ease;
 }
 a:hover{
-  background-color: rgb(143, 143, 143);
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  background-color: rgb(222, 222, 222);
+}
+
+.cont {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .inputContainer {
