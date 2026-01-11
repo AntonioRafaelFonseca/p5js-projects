@@ -10,7 +10,8 @@ let j = 0;
 let run = false;
 
 function setup() {
-  createCanvas(max(400, numberOfBars), 400);    //limits the canvas width to 400 
+  let canvas = createCanvas(max(400, numberOfBars), 400);    //limits the canvas width to 400 
+  canvas.parent(document.querySelector('.sketchCont'))
   for(let i = 0;i< numberOfBars;i++){
     RandomArray.push(map(i, 0, numberOfBars, 1, height));                 // adds in the numbers
   }

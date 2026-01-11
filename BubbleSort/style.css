@@ -13,6 +13,9 @@
   margin-left: 21px;
   text
 }
+#ref {
+  margin-top: 150px;
+}
 .text {
   font-family: 'Times New Roman', Times, serif;
   font-size: medium;
@@ -95,4 +98,35 @@ input[type="number"] {
   border: 2px solid rgba(129, 241, 95, 1);
   border-radius: 8px;
   color: #000000ff;
+}
+a {
+  border: 2px solid rgba(0, 0, 0, 1);
+  background-color: #aeaeaeff;
+  color: black;
+  border-radius: 10px;
+  white-space: pre-line;
+  min-width: fit-content;
+  width: 400px;
+
+  
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: larger;
+  text-decoration: dotted;
+
+  transition: all 0.3s ease;
+}
+a:hover{
+  margin-bottom: 15px;
+  background-color: rgb(222, 222, 222);
+}
+.linkCont {
+  display: flex;
+  gap: 10px;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
