@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@1,300&display=swap');
+* {
+  margin-left: 5px;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+#codeCont button {
+  background-color: rgb(111, 181, 114);
+  border: 1px solid black;
+  border-radius: 5px;
+  max-width: 400px;
+}
+#codeCont button:hover {
+  background-color: rgb(157, 202, 159);
+  
+}
+canvas {
+  display: block;
+}
+#inputCont {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: fit-content;
+  background-color: rgb(220, 220, 220);
+}
+#codeCont {
+  width: fit-content;
+  border: 2px solid rgb(200, 200, 200);
+  padding-bottom: 5px;
+  background-color: rgb(220, 220, 220);
+}
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 253px;
+  height: 6px;
+  background: rgb(111, 181, 114);
+  border: 1px solid black;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* trilho ao passar o rato */
+input[type="range"]:hover {
+  background: rgb(157, 202, 159);
+}
+
+/* bolinha (thumb) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  cursor: pointer;
+}
+h1 {
+  font-size: 3em;
+}
+h2 {
+  font-size: 2em;
+  white-space: pre;
+}
+
+#titleh2 {
+  margin-top: -40px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: -6px;
+}
+
+h4 {
+  font-size: 25px;
+  margin-left: 3px;
+  margin-top: 80px;
+  white-space: pre;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: bold;
+}
+.code {
+  background-color: rgb(230, 230, 230);
+  white-space: pre;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid rgb(123, 123, 123);
+  box-shadow: 3px black;
+  margin-left: 27px;
+  font-family: 'Google Sans Code', monospace;
+  font-style: italic;
+}
+#pre {
+  white-space: pre;
+}
+.FullCodeCont {
+  display: flex;
+  flex-direction: column;
+}
+.copy {
+
+  position: relative;
+  left: 57.5em;
+  top: 2.6em;
+
+  background-image: url('copyIcon.png');
+  width: 32px;
+  height: 32px;
+  background-size: 24px 24px;
+  background-position: center; 
+  background-repeat: no-repeat;
+  background-color: rgb(230, 230, 230);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.copy:hover {
+  box-shadow: 3px 3px 5px 1px;
+}
+.copy:active{
+  box-shadow: 3px 3px 5px 1px #346b3e;
+}

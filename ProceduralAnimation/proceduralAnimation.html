@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+  </head>
+
+  <body>
+    <div id="title">
+      <h1>Procedural Animation</h1>
+      <h2 id="titleh2">    In P5.js</h2>
+      <h3>
+        This project presents a simple segment-based chain simulation built using p5.js, where multiple connected segments move and follow each other in a two-dimensional space.
+      </h3>
+    </div>
+    <div id="classExpl">
+      <h2>Class Explanation</h2>
+      <div id="Constructor">
+        <h4>Constructor Method</h4>
+        <div class="text">The Seg class defines a single segment. Each segment has:
+
+        VectA: the vector representing the segment&apos;s position.
+        
+        rest: a small offset distance to maintain smooth proportional motion.
+        
+        parent: a reference to the segment it follows.
+          </div>
+        <div class="code">constructor(x=width/2, y=height/2, rest) {
+          this.VectA = createVector(x, y);
+          this.parent = null;
+          this.rest = rest ?? 10;
+  }     </div>
+      </div>
+      <div id="MoveTo">
+        <h4>MoveTo Method</h4>
+        <h3>The moveTo method smoothly moves a segment toward a target point (px, py).</h3>
+        <div class="text">It calculates the vector from the segment to the target, measures the distance to determine how far the segment should move and moves the segment there.</div>
+        <div class="code">moveTo(px, py){
+          let target = createVector(px, py);
+          let dirVec = p5.Vector.sub(target, this.VectA);
+          let dist = dirVec.mag();
+          
+          dirVec.normalize();
+          dirVec.mult(dist);
+          this.VectA.add(dirVec);
+}
+        </div>
+      </div>
+      <div id="follow">
+        <h2>Follow Method</h2>
+        <div class="text" id="pre">The follow method makes a segment follow its parent segment while keeping the correct distance by:
+
+          1<sup style="margin-left: -0.1em; font-size: small;">st</sup> Calculating the vector pointing from the segment to its parent.
+          
+          2<sup style="margin-left: -0.1em; font-size: small;">nd</sup> Finding the difference between the current distance and the desired rest length.
+          
+          3<sup style="margin-left: -0.1em; font-size: small;">rd</sup> Moving the segment proportionally to this difference, keeping connections stable yet flexible.
+        </div>
+        <div class="code">follow(parent){
+          this.parent = parent;
+          let dirVec = p5.Vector.sub(parent.VectA, this.VectA);
+          let dist = dirVec.mag();
+          
+          let error = dist - this.rest;
+          dirVec.normalize();
+          dirVec.mult(error - this.rest);
+          
+          this.VectA.add(dirVec);
+}       </div>
+      </div>
+      <div id="show">
+        <h2>Show Method</h2>
+        <div class="text">The show method draws the segment on the screen, visualizing both the connection and the segment&apos;s point.
+
+          It Draws a line from the segment to its parent, draws a circle at the segment&apos;s position, representing a joint and allows customization of circle color, size, and line thickness.</div>
+        <div class="code">show(circleColor, circleRadius, lineColor, lineWidth){
+          stroke(lineColor);
+          strokeWeight(lineWidth);
+          line(this.VectA.x, this.VectA.y, this.parent.VectA.x, this.parent.VectA.y);
+          
+          strokeWeight(2);
+          stroke(0);
+          fill(circleColor);
+          circle(this.VectA.x, this.VectA.y, circleRadius*2);
+}</div>
+      </div>
+    </div>
+    <div id="sketchExpl">
+      <h2>Sketch Explanation</h2>
+      <div class="text">A main segment acts as the head of the chain and follows the mouse cursor, controlling the movement of the rest of the segments in a hierarchical way.</div>
+      <div class="code">arms[0].moveTo(mouseX, mouseY);</div>
+      <div class="text">
+Around it, other segments are linked sequentially. Each segment follows the previous segment while maintaining a proportional distance defined by the rest parameter, which ensures smooth motion and avoids abrupt jumps.
+      </div>
+      <div class="text">
+        During the simulation, all segments are updated continuously. The head segment moves toward the mouse, and all child segments follow their parent segment with proportional correction.
+      </div>
+      <div class="code">for (var i = 0; i &lt; arms.length; i++) {
+        if (i === 0) {
+          arms[0].moveTo(mouseX, mouseY);
+        } else {
+          arms[i].follow(arms[i - 1]);
+        }
+        arms[i].show(color(255), 2, color(0), 10);
+}</div>
+      <div class="text">
+        The movement of each segment is calculated using vectors: the vector from the current segment to its target (the parent segment or the mouse) determines the direction and distance. By normalizing the vector and scaling it proportionally to the distance error, each segment moves smoothly, creating a flexible, snake-like chain.
+      </div>
+    </div>
+    <div id="codeCont">
+      <div id="sketchCont"></div>
+      <div id="inputCont">
+        <button id="playB">&#9654;/&#10074;&#10074;</button>
+        <div id="slider">
+          <label for="nRange">Number of Arms:</label>
+          <input id="nRange" type="range" step="1" min="5" max="50" value="5">
+          <span id="sliderSpan">50</span>
+        </div>
+      </div>
+    </div>
+    <div id="fullCode">
+      <h2>Full Sketch</h2>
+      <div class="FullCodeCont">
+        <button class="copy" id="copyB"></button>
+        <div class="code" id="fCode">let numberOfSegments = 10;
+let restLength = 15;
+let arms = [];
+
+function setup() {
+  createCanvas(400, 400);
+
+  for (var i = 0; i < numberOfSegments; i++){
+    arms.push(new Seg(-i, height/2, restLength));
+  }
+  arms[0].parent = arms[0];
+}
+
+function draw() {
+  background(220);
+
+  for (var i = 0; i < arms.length; i++) {
+    if (i === 0) {
+      arms[0].moveTo(mouseX, mouseY);
+    } else {
+      arms[i].follow(arms[i - 1]);
+    }
+    arms[i].show(color(255), 2, color(0), 10);
+  }
+}</div>
+      </div>
+    </div>
+    <script src="class.js"></script>
+    <script src="sketch.js"></script>
+    <script src="inputs.js"></script>
+  </body>
+</html>
