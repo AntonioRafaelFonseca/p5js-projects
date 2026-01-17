@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@1,300&display=swap');
 html {
   margin: 0px;
   padding: 0px;
@@ -22,7 +23,11 @@ footer {
   margin-top: 10px;
   font-size: large;
 }
-
+a:hover{
+  margin-bottom: 15px;
+  background-color: rgb(222, 222, 222);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.45);
+}
 
 
 h1 {
@@ -66,22 +71,18 @@ h4 {
   margin-left: 21px;
 }
 
-.code{
+.code {
+  background-color: rgb(230, 230, 230);
   white-space: pre;
-  display: inline-block;
-  background-color: #252525ff;
-  border-style: double;
-  color: #fff;
-  padding: 5px;
-  padding-top: 1px;
-  padding-bottom: 10px;
-  border-radius: 4px;
-  font-family: monospace;
-  overflow-x: auto;
-  margin-left: 21px;
-  text
+  width: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid rgb(123, 123, 123);
+  box-shadow: 3px black;
+  margin-left: 27px;
+  font-family: 'Google Sans Code', monospace;
+  font-style: italic;
 }
-
 img {
   display: block;
   margin-left: 21px;
@@ -167,10 +168,7 @@ a {
 
   transition: all 0.3s ease;
 }
-a:hover{
-  margin-bottom: 15px;
-  background-color: rgb(222, 222, 222);
-}
+
 
 .cont {
   display: flex;

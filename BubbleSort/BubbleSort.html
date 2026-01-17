@@ -47,30 +47,31 @@
         </div>
         <pre></pre>
         <div class="code">
-  l=[3, 1, 4, 6, 7, 9, 1, 4, 2];
+l=[3, 1, 4, 6, 7, 9, 1, 4, 2];
 
-                &downarrow;
+              &downarrow;
 
-  l=[1, 3, 4, 6, 7, 9, 1, 4, 2];
+l=[1, 3, 4, 6, 7, 9, 1, 4, 2];
 
-                &downarrow;
+              &downarrow;
 
-  l=[1, 3, 4, 6, 7, 9, 1, 4, 2];
+l=[1, 3, 4, 6, 7, 9, 1, 4, 2];
 
-                &downarrow;
+              &downarrow;
 
-  l=[1, 3, 4, 6, 7, 9, 1, 4, 2];
+l=[1, 3, 4, 6, 7, 9, 1, 4, 2];
 
-                &downarrow;
+              &downarrow;
 
-              ...
+            ...
 
-                &downarrow;
-  l=[1, 1, 2, 3, 4, 4, 6, 7, 9]
+              &downarrow;
+l=[1, 1, 2, 3, 4, 4, 6, 7, 9]
         </div>
       </div>
       <div id="countCorrect">
-        <div class="text">To check if the list is sorted, we can count how many adjacent pairs are in the correct order</div>
+        <div class="text">
+          To check if the list is sorted, we can count how many adjacent pairs are in the correct order</div>
         <pre>  For example, in the list [0, 1, 4, 4, 2, 9]:
           - 0 and 1 are in the correct order (0 &lt; 1)
           - 1 and 4 are in the correct order (1 &lt; 4)
@@ -119,9 +120,9 @@ y = canvasHeight - BarHeight               #the y position is determined by subt
 Full Code:
       </h2>
       <div class="code">
-const numberOfBars = 100;           //set this to whateaver you want
+const numberOfBars = 100;
 let RandomArray = [];
-let substeps = numberOfBars/5;    //decrease the number to increase the number of substeps
+let substeps = numberOfBars/5;
 let lastCorrectIndex;
 let RedBarIndex;
 let ItemsToRandomlyAddInMainArray = []
@@ -131,7 +132,7 @@ let j = 0;
 function setup() {
   createCanvas(max(400, numberOfBars), 400);    //limits the canvas width to 400 
   for(let i = 0;i &lt; numberOfBars;i++){
-    RandomArray.push(map(i, 0, numberOfBars, 1, height));                 // adds in the numbers
+    RandomArray.push(map(i, 0, numberOfBars, 1, height));
   }
   shuffle(RandomArray, true)
   
@@ -161,7 +162,7 @@ function SolveSorting(list, i){
   }
 }
 
-function CountCorrect(list){                        //counts the correct items
+function CountCorrect(list){       
   var correct = 0;
 
   for (var i = 0;i &lt; list.length-1; i++){
@@ -172,7 +173,7 @@ function CountCorrect(list){                        //counts the correct items
   return correct;
 }
 
-function goAndDraw(l){                                //iterate over all the items in a list and draw them
+function goAndDraw(l){                                
 
   for (let j = 0;j &lt; l.length;j++){                 
 
@@ -191,8 +192,6 @@ function draw() {                         //main loop
       background(0);
       
       goAndDraw(RandomArray);
-      
-      //substeps = map(mouseX, 0, 200, 1, numberOfBars)      You can add this here to be able to control with the mouse X position the substeps
       
       noStroke()
       RedBarIndex++;
