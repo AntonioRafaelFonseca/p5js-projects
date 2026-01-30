@@ -19,6 +19,14 @@ html, body {
 canvas {
   display: block;
 }
+label {
+  font-family: 'Google Sans Code';
+  font-size: small;
+}
+.checkDiv {
+  display: flex;
+  align-items: center;
+}
 #inputCont {
   display: flex;
   flex-direction: column;
@@ -34,7 +42,7 @@ canvas {
 }
 input[type="range"] {
   -webkit-appearance: none;
-  width: 253px;
+  width: 100%px;
   height: 6px;
   background: rgb(111, 181, 114);
   border: 1px solid black;

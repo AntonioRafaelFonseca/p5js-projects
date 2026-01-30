@@ -1,7 +1,28 @@
+class Follower {
+  constructor(x, y, parent){
+    this.x = x;
+    this.y = y;
+    var V = createVector(x, y);
+    this.angle = p5.Vector.sub(parent.VectA, V);
+    this.angle = this.angle.heading();
+    this.speed = 1;
+  }
+  update(){
+    this.x += cos(this.angle) * this.speed;
+    this.y += sin(this.angle) * this.speed;
+  }
+  show(){
+    circle(this.x, this.y, 5)
+  }
+}
+
+
 let numberOfSegments = 10;
 let restLength = 15;
 let arms = [];
 let paused = false;
+
+
 function setup() {
 
   for (var i = 0; i < numberOfSegments; i++) {
@@ -10,6 +31,8 @@ function setup() {
   c = createCanvas(400, 400);
   c.parent('sketchCont')
   arms[0].parent = arms[0]
+  foll = new Follower(arms[0].VectA.x, arms[0].VectA.y, arms[0]);
+  keyBoardC = false;
 }
 function draw() {
 
@@ -19,7 +42,12 @@ function draw() {
 
     for (var i = 0; i < arms.length; i++) {
       if (i === 0) {
-        arms[0].moveTo(mouseX, mouseY);
+        if(!keyBoardC){
+          arms[0].moveTo(mouseX, mouseY);
+        }else{
+        arms[0].moveTo(foll.x, foll.y);
+        foll.update();
+        }
 
       }
 

@@ -122,7 +122,13 @@ Around it, other segments are linked sequentially. Each segment follows the prev
           <label for="nRange">Number of Arms:</label>
           <input id="nRange" type="range" step="1" min="5" max="50" value="5">
           <span id="sliderSpan">50</span>
+          
         </div>
+        <div class="checkDiv">
+          <label for="check">Use keys to control</label>
+          <input type="checkbox" id="check" onclick="switchControls()">          
+        </div>
+
       </div>
     </div>
     <div id="fullCode">
