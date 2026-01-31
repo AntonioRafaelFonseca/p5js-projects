@@ -42,11 +42,16 @@ function draw() {
 
     for (var i = 0; i < arms.length; i++) {
       if (i === 0) {
-        if(!keyBoardC){
-          arms[0].moveTo(mouseX, mouseY);
-        }else{
+
+        if(keyBoardC)
+        {
         arms[0].moveTo(foll.x, foll.y);
-        foll.update();
+        foll.update();          
+        }
+        
+        else
+        {
+          arms[0].moveTo(mouseX, mouseY);
         }
 
       }
